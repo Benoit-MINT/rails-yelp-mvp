@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @restaurant %>
+
+<div>
+  <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
+  <%= link_to "Back to restaurants", restaurants_path %>
+
+  <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+</div>
+
+<div class="cards mb-3">
+  <% @reviews.each do |review| %>
+      <%= review.content %>
+      <%= review.rating %>
+  <% end %>
+</div>
+
+<div class="container mb-3">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <h4>Add a review:</h4>
+      <%= simple_form_for [@restaurant, @review] do |f| %>
+        <%= f.input :content %>
+        <%= f.input :rating %>
+        <%= f.submit "Add review", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
